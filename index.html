@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Homemade Sweets Store</title>
 
 <style>
+
 :root{
-  --primary:#7b3f00;
-  --accent:#ff7a00;
-  --bg:#fff6ee;
+--primary:#7b3f00;
+--accent:#ff7a00;
+--bg:#fff6ee;
 }
 
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -54,10 +57,6 @@ background:#ffe7d1;
 .hero h1{
 margin:0 0 10px;
 font-size:38px;
-}
-
-.hero p{
-margin:0;
 }
 
 /* PRODUCTS */
@@ -103,7 +102,7 @@ cursor:pointer;
 margin-bottom:16px;
 }
 
-/* CART DRAWER */
+/* CART */
 
 .cart{
 position:fixed;
@@ -122,18 +121,10 @@ overflow:auto;
 right:0;
 }
 
-.cart h2{
-margin-top:0;
-}
-
 .item{
 display:flex;
 justify-content:space-between;
 margin-bottom:12px;
-}
-
-.qty button{
-padding:2px 6px;
 }
 
 .total{
@@ -158,46 +149,55 @@ color:white;
 padding:16px;
 margin-top:30px;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <div class="logo">🍬 Homemade Sweets</div>
-<div class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</div>
+
+<div class="cart-btn" onclick="toggleCart()">
+🛒 Cart (<span id="count">0</span>)
+</div>
+
 </header>
 
 <section class="hero">
+
 <h1>Fresh Homemade Indian Sweets</h1>
+
 <p>Pure ingredients • Traditional taste • Made with love</p>
+
 </section>
 
 <section class="products">
 
 <div class="card">
-<img src="Basen Laadu.jpg">
+<img src="basen_laadu.jpg">
 <h3>Besan Laddu</h3>
 <div class="price">₹350 / kg</div>
 <button onclick="add('Besan Laddu',350)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="Rasmali.jpg">
+<img src="rasmali.jpg">
 <h3>Rasmalai</h3>
 <div class="price">₹40 / piece</div>
 <button onclick="add('Rasmalai',40)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="Gulaba Jamun.jpg">
+<img src="gulabjamun.jpg">
 <h3>Gulab Jamun</h3>
 <div class="price">₹35 / piece</div>
 <button onclick="add('Gulab Jamun',35)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="Kaju Katali.jpg">
+<img src="kajukatli.jpg">
 <h3>Kaju Katli</h3>
 <div class="price">₹900 / kg</div>
 <button onclick="add('Kaju Katli',900)">Add to Cart</button>
@@ -205,12 +205,17 @@ margin-top:30px;
 
 </section>
 
-<!-- CART PANEL -->
+<!-- CART -->
 
 <div class="cart" id="cart">
+
 <h2>Your Cart</h2>
+
 <div id="items"></div>
-<div class="total">Total: ₹<span id="total">0</span></div>
+
+<div class="total">
+Total: ₹<span id="total">0</span>
+</div>
 
 <button class="checkout" onclick="checkout()">
 Order on WhatsApp
@@ -218,14 +223,16 @@ Order on WhatsApp
 
 <br><br>
 
-<button class="checkout" onclick="cashfreeDemo()">
+<button class="checkout" onclick="razorpayDemo()">
 Pay Online (Demo)
 </button>
-  
+
 </div>
 
 <footer>
+
 © 2026 Homemade Sweets Store
+
 </footer>
 
 <script>
@@ -239,51 +246,79 @@ document.getElementById("cart").classList.toggle("open")
 function add(name,price){
 
 if(!cart[name]){
+
 cart[name]={price:price,qty:1}
+
 }else{
+
 cart[name].qty++
+
 }
 
 update()
+
 }
 
 function change(name,val){
+
 cart[name].qty+=val
-if(cart[name].qty<=0) delete cart[name]
+
+if(cart[name].qty<=0){
+
+delete cart[name]
+
+}
+
 update()
+
 }
 
 function update(){
 
 let items=document.getElementById("items")
+
 items.innerHTML=""
 
 let total=0
+
 let count=0
 
 for(let i in cart){
 
 let item=cart[i]
+
 total+=item.price*item.qty
+
 count+=item.qty
 
 items.innerHTML+=`
+
 <div class="item">
+
 <div>
+
 ${i}<br>
+
 ₹${item.price} x ${item.qty}
+
 </div>
 
-<div class="qty">
+<div>
+
 <button onclick="change('${i}',-1)">-</button>
+
 <button onclick="change('${i}',1)">+</button>
+
 </div>
 
 </div>
+
 `
+
 }
 
 document.getElementById("total").innerText=total
+
 document.getElementById("count").innerText=count
 
 }
@@ -291,34 +326,34 @@ document.getElementById("count").innerText=count
 function checkout(){
 
 if(Object.keys(cart).length===0){
+
 alert("Cart empty")
+
 return
+
 }
 
 let text="Hello, I want to order:%0A"
 
 for(let i in cart){
+
 text+=`${i} x ${cart[i].qty}%0A`
+
 }
 
 text+="%0ATotal: ₹"+document.getElementById("total").innerText
 
-window.open("https://wa.me/919356755100?text=" + text)
+window.open("https://wa.me/919356755100?text="+text)
 
 }
 
-}
+function razorpayDemo(){
 
-onclick="Cashfreedemo()"{
-alert("Here you can integrate Cashfree checkout later.")
+alert("Online payment integration coming soon.")
+
 }
 
 </script>
 
 </body>
-
 </html>
-
-
-
-
