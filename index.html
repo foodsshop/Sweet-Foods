@@ -243,7 +243,21 @@ Delivery: ₹<span id="deliveryCharge">0</span>
 </div>
 
 <div id="items"></div>
+<div style="margin-top:15px">
 
+<input id="name" placeholder="Your Name" style="width:100%;padding:8px;margin-bottom:8px">
+
+<input id="phone" placeholder="Phone Number" style="width:100%;padding:8px;margin-bottom:8px">
+
+<input id="address" placeholder="Delivery Address" style="width:100%;padding:8px;margin-bottom:8px">
+<select id="area" onchange="updateAreaDelivery()" style="width:100%;padding:8px;margin-bottom:10px">
+
+<option value="30">0-3 km (₹30)</option>
+<option value="50">3-6 km (₹50)</option>
+<option value="80">6-10 km (₹80)</option>
+
+</select>
+</div>
 <div class="total">Total: ₹<span id="total">0</span></div>
 <button class="checkout" onclick="checkout()">
 
@@ -348,7 +362,10 @@ update()
 }
 
 function checkout(){
-
+let name = document.getElementById("name").value
+let phone = document.getElementById("phone").value
+let address = document.getElementById("address").value
+  
 if(Object.keys(cart).length===0){
 alert("Cart empty")
 return
@@ -359,11 +376,11 @@ let text="Hello, I want to order:%0A"
 for(let i in cart){
 text+=`${i} x ${cart[i].qty}%0A`
 }
-
+text+="Name: "+name+"%0A"
+text+="Phone: "+phone+"%0A"
+text+="Address: "+address+"%0A"
 text+="Delivery: ₹"+delivery+"%0A"
-
 text+="%0ATotal: ₹"+document.getElementById("total").innerText
-
 window.open("https://wa.me/917020079733?text="+text)
 
 }
@@ -373,6 +390,7 @@ alert("Online payment integration coming soon.")
 }
 
 </script>
+
 
 
 
