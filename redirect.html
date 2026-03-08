@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Processing Payment</title>
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search)
+
+const status = urlParams.get("order_status")
+
+if(status === "PAID"){
+
+window.location.href = "success.html"
+
+}else{
+
+window.location.href = "cancel.html"
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h2 style="text-align:center;margin-top:100px">
+Processing payment...
+</h2>
+
+</body>
+
+</html>
