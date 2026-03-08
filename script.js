@@ -1,3 +1,4 @@
+let cart = {}
 let delivery = 0
 
 function updateDelivery(){
