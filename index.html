@@ -213,6 +213,28 @@ margin-top:30px;
 
 <!-- CART -->
 
+<div style="margin-top:10px">
+
+<label>Select Delivery</label>
+
+<select id="delivery" onchange="updateDelivery()">
+
+<option value="0">Local Pickup (Free)</option>
+
+<option value="50">Local Delivery ₹50</option>
+
+<option value="80">Rapido Delivery ₹80</option>
+
+<option value="100">Dunzo Delivery ₹100</option>
+
+</select>
+
+</div>
+
+<div style="margin-top:10px">
+Delivery: ₹<span id="deliveryCharge">0</span>
+</div>
+
 <div class="cart" id="cart">
 
 <div style="display:flex;justify-content:space-between;align-items:center">
@@ -368,6 +390,7 @@ alert("Online payment integration coming soon.")
 
 </body>
 </html>
+
 
 
 
