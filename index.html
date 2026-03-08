@@ -249,9 +249,19 @@ text-decoration:none;
 </section>
 
 <!-- CART -->
-
 <div style="margin-top:10px">
+Delivery: ₹<span id="deliveryCharge">0</span>
+</div>
 
+<div class="cart" id="cart">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h2>Your Cart</h2>
+<span onclick="toggleCart()" style="cursor:pointer;font-size:22px;font-weight:bold">✖</span>
+</div>
+
+<div id="items"></div>
+<div style="margin-top:10px"></div>
 <label>Select Delivery</label>
 
 <select id="delivery" onchange="updateDelivery()">
@@ -266,20 +276,6 @@ text-decoration:none;
 
 </select>
 
-</div>
-
-<div style="margin-top:10px">
-Delivery: ₹<span id="deliveryCharge">0</span>
-</div>
-
-<div class="cart" id="cart">
-
-<div style="display:flex;justify-content:space-between;align-items:center">
-<h2>Your Cart</h2>
-<span onclick="toggleCart()" style="cursor:pointer;font-size:22px;font-weight:bold">✖</span>
-</div>
-
-<div id="items"></div>
 <div style="margin-top:15px">
 
 <input id="name" placeholder="Your Name" style="width:100%;padding:8px;margin-bottom:8px">
@@ -296,7 +292,14 @@ Delivery: ₹<span id="deliveryCharge">0</span>
 </select>
 </div>
 <div class="total">Total: ₹<span id="total">0</span></div>
-<form>
+<!-- Cashfree Button -->
+
+PAY BUTTON
+
+<button class="checkout" onclick="checkout()">
+Order on WhatsApp
+</button>
+  <form>
   <a href="https://payments.cashfree.com/forms/Sweet-Foods" target="_parent">
     <div class="button-container" style="background: #00c3e6">
       <div>
@@ -313,48 +316,7 @@ Delivery: ₹<span id="deliveryCharge">0</span>
       </div>
     </div>
   </a>
- <style>
-  .button-container{
-      border: 1px solid black;
-      border-radius: 15px;
-      display: flex;
-      padding: 10px;
-      width: fit-content;
-      cursor: pointer;
-  }
-  .text-container{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-left: 10px;
-      justify-content: center;
-      margin-right: 10px;
-  }
-  .logo-container{
-      width: 40px;
-      height: 40px;
-  }
-  .seconday-logo-container{
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-  }
-  a{
-    text-decoration:none;
-  }
-</style>
 </form>
-<button class="checkout" onclick="checkout()">
-
-Order on WhatsApp
-</button>
-
-<br><br>
-
-<button class="checkout" onclick="razorpayDemo()">
-Pay Online (Demo)
-</button>
-
 </div>
 
 <footer>
@@ -475,6 +437,7 @@ alert("Online payment integration coming soon.")
 }
 
 </script>
+
 
 
 
